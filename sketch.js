@@ -46,6 +46,10 @@ var sec;
 
 var backgroundImg, bg;
 
+let classifier;
+
+let video;
+
 function preload() {
   backgroundImg = loadImage("Sprites/backgroundImg.png");
   
@@ -136,6 +140,10 @@ function preload() {
   sunny = loadSound("Assets/sunny.mp3");
 
   thunderStr = loadSound("Assets/thunder.mp3");
+  
+  const options = { probabilityThreshold: 0.95 };
+
+  classifier = ml5.soundClassifier('SpeechCommands18w', options, modelReady);
 }
 
 function setup() {
@@ -195,10 +203,21 @@ function setup() {
   GroupRain = new Group();
 
   ALLGroups = new Group();
+
+  video = createCapture(VIDEO);
+  video.hide();
 }
+
+function modelReady() {
+  // classify sound
+  classifier.classify(gotCommands);
+}
+
 
 function draw() {
   backgroundChanger();
+
+  image(video,0,0,width,height);
 
   // console.log(robin.y);
 
@@ -211,13 +230,12 @@ function draw() {
       ground.x = ground.width / 2;
     }
 
-    if ((touches.length > 2 || keyWentDown("s")) && frameCount % 55 != 0) {
+    if (keyWentDown("s") && frameCount % 55 != 0) {
       robin.changeImage("slide", robin_slide);
       sliding.play();
       invisibleGround.y = height-72;
       robin.y = height-72;
       robin.velocityY=0;
-      touches = [];
     } else if (keyWentUp("s") || frameCount % 55 === 0) {
       // console.log(increm);
       robin.changeAnimation("running", robin_running);
@@ -300,6 +318,20 @@ function draw() {
 
 }
 
+function gotCommands(error, results) {
+  if (error) {
+//     console.error(error);
+  }
+
+  // console.log(results[0].label, results[0].confidence);
+  
+  if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-98.5){
+    robin.velocityY = -10.5;
+    robin.changeAnimation("running", robin_running);
+    jump.play();
+  }
+}
+
 function backgroundChanger(){
   if(score >= 0 && score < 250){
     background("white");
@@ -312,7 +344,7 @@ function backgroundChanger(){
       touches = [];
     }
 
-    robin.velocityY = robin.velocityY + 0.8;
+    robin.velocityY  = robin.velocityY + 0.8;
 
     spawnhurdles();
   } else if(score >= 250 && score < 500){
@@ -441,7 +473,7 @@ function reset() {
 
   score = 0;
 
-//   sec = 0;
+  sec = 0;
 }
 
 function spawnClouds() {
