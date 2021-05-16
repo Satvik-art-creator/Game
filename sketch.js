@@ -48,8 +48,6 @@ var backgroundImg, bg;
 
 let classifier;
 
-let video;
-
 function preload() {
   backgroundImg = loadImage("Sprites/backgroundImg.png");
   
@@ -203,9 +201,6 @@ function setup() {
   GroupRain = new Group();
 
   ALLGroups = new Group();
-
-  video = createCapture(VIDEO);
-  video.hide();
 }
 
 function modelReady() {
@@ -216,8 +211,6 @@ function modelReady() {
 
 function draw() {
   backgroundChanger();
-
-  image(video,0,0,width,height);
 
   // console.log(robin.y);
 
@@ -320,7 +313,7 @@ function draw() {
 
 function gotCommands(error, results) {
   if (error) {
-//     console.error(error);
+    console.error(error);
   }
 
   // console.log(results[0].label, results[0].confidence);
