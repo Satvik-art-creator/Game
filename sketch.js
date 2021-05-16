@@ -182,12 +182,12 @@ function setup() {
 
   gameOver = createSprite(width/2, height/2-90, 20, 20);
   gameOver.addImage(gameOverImage);
-  gameOver.scale = 0.15;
+  gameOver.scale = 0.10;
   gameOver.visible = false;
 
   restart = createSprite(width/2, height/2, 20, 20);
   restart.addImage(restartImage);
-  restart.scale = 0.8;
+  restart.scale = 0.6;
   restart.visible = false;
 
   GroupClouds = new Group();
