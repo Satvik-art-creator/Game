@@ -139,9 +139,9 @@ function preload() {
 
   thunderStr = loadSound("Assets/thunder.mp3");
   
-  const options = { probabilityThreshold: 0.95 };
+//   const options = { probabilityThreshold: 0.95 };
 
-  classifier = ml5.soundClassifier('SpeechCommands18w', options, modelReady);
+//   classifier = ml5.soundClassifier('SpeechCommands18w', options, modelReady);
 }
 
 function setup() {
@@ -203,10 +203,10 @@ function setup() {
   ALLGroups = new Group();
 }
 
-function modelReady() {
-  // classify sound
-  classifier.classify(gotCommands);
-}
+// function modelReady() {
+//   // classify sound
+//   classifier.classify(gotCommands);
+// }
 
 
 function draw() {
@@ -311,19 +311,19 @@ function draw() {
 
 }
 
-function gotCommands(error, results) {
-  if (error) {
-    console.error(error);
-  }
+// function gotCommands(error, results) {
+//   if (error) {
+//     console.error(error);
+//   }
 
-  // console.log(results[0].label, results[0].confidence);
+//   // console.log(results[0].label, results[0].confidence);
   
-  if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-98.5){
-    robin.velocityY = -10.5;
-    robin.changeAnimation("running", robin_running);
-    jump.play();
-  }
-}
+//   if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-98.5){
+//     robin.velocityY = -10.5;
+//     robin.changeAnimation("running", robin_running);
+//     jump.play();
+//   }
+// }
 
 function backgroundChanger(){
   if(score >= 0 && score < 250){
