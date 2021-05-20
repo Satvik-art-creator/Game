@@ -223,7 +223,7 @@ function draw() {
       ground.x = ground.width / 2;
     }
     
-    $(window).bind("swipe.up", function() {
+    $(window).bind("tap", function() {
       if(robin.y >= height-98.5){
         robin.velocityY = -12;
         robin.changeAnimation("running", robin_running);
@@ -312,7 +312,7 @@ function draw() {
 
     if (mousePressedOver(restart) || keyDown("enter") || touches.length>0) {
       reset();
-      touches = [];
+
     }
   }
 
@@ -363,11 +363,10 @@ function backgroundChanger(){
     background(rgb(141, 163, 153));
 
     //?velocity of Robin
-    if ((touches.length > 0 || keyDown("space")) && robin.y >= height-98.5) {
+    if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
-      touches = [];
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -381,11 +380,11 @@ function backgroundChanger(){
     Sun.visible=true;
 
     //velocity of Robin
-    if ((touches.length > 0 || keyDown("space")) && robin.y >= height-98.5) {
+    if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
       jump.play();
-      touches = [];
+
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -399,11 +398,11 @@ function backgroundChanger(){
     Sun.visible=false;
 
     //velocity of Robin
-    if ((touches.length > 0 || keyDown("space")) && robin.y >= height-98.5) {
+    if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
       jump.play();
-      touches = [];
+
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -422,11 +421,11 @@ function backgroundChanger(){
     background(rgb(22, 19, 20));
 
     //velocity of Robin
-    if ((touches.length > 0 || keyDown("space")) && robin.y >= height-98.5) {
+    if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
       jump.play();
-      touches = [];
+
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -447,11 +446,11 @@ function backgroundChanger(){
     background(backgroundImg);
 
     //velocity of Robin
-    if ((touches.length > 0 || keyDown("space")) && robin.y >= height-98.5) {
+    if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
       jump.play();
-      touches = [];
+
     }
 
     robin.velocityY = robin.velocityY + 0.8;
