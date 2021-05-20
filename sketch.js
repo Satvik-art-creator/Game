@@ -223,17 +223,28 @@ function draw() {
       ground.x = ground.width / 2;
     }
 
-    if ((touches.length>1 || keyWentDown("s")) && frameCount % 55 != 0) {
+    if (keyWentDown("s") && frameCount % 55 != 0) {
       robin.changeImage("slide", robin_slide);
       sliding.play();
       invisibleGround.y = height-72;
       robin.y = height-72;
       robin.velocityY=0;
-      touches = [];
     } else if (keyWentUp("s") || frameCount % 55 === 0) {
       // console.log(increm);
       robin.changeAnimation("running", robin_running);
     }
+    
+    $(window).bind("doubletap", function() {
+      if(frameCount % 55 != 0){
+        robin.changeImage("slide", robin_slide);
+        sliding.play();
+        invisibleGround.y = height-72;
+        robin.y = height-72;
+        robin.velocityY=0;
+      } else{
+        robin.changeAnimation("running", robin_running);
+      }
+    });
 
     spawnClouds();
     
