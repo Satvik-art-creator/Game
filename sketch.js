@@ -331,12 +331,19 @@ function backgroundChanger(){
     background("white");
 
     //? velocity of Robin
-    if ((touches.length > 0 || keyDown("space")) && robin.y >= height-98.5) {
+    if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
-      touches = [];
     }
+    
+    $(window).bind("tap", function() {
+      if(robin.y >= height-98.5){
+        robin.velocityY = -10.5;
+        robin.changeAnimation("running", robin_running);
+        jump.play();
+      }
+    });
 
     robin.velocityY  = robin.velocityY + 0.8;
 
