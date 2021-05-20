@@ -222,6 +222,14 @@ function draw() {
     if (ground.x < 0) {
       ground.x = ground.width / 2;
     }
+    
+    $(window).bind("swipe.up", function() {
+      if(robin.y >= height-98.5){
+        robin.velocityY = -12;
+        robin.changeAnimation("running", robin_running);
+        jump.play();
+      }
+    });
 
     if (keyWentDown("s") && frameCount % 55 != 0) {
       robin.changeImage("slide", robin_slide);
@@ -347,14 +355,6 @@ function backgroundChanger(){
       robin.changeAnimation("running", robin_running);
       jump.play();
     }
-    
-    $(window).bind("tap", function() {
-      if(robin.y >= height-98.5){
-        robin.velocityY = -10.5;
-        robin.changeAnimation("running", robin_running);
-        jump.play();
-      }
-    });
 
     robin.velocityY  = robin.velocityY + 0.8;
 
