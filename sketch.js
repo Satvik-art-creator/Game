@@ -234,7 +234,7 @@ function draw() {
       robin.changeAnimation("running", robin_running);
     }
     
-    $(window).bind("doubletap", function() {
+    $(window).bind("swipe.down", function() {
       if(frameCount % 55 != 0){
         robin.changeImage("slide", robin_slide);
         sliding.play();
