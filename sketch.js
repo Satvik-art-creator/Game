@@ -266,10 +266,10 @@ function draw() {
       check.play();
     }
 
-    if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
+//     if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
 //       die.play();
 //       gameState = END;
-    }
+//     }
 
   } else if (gameState === END) {
     GroupClouds.setVelocityXEach(0);
