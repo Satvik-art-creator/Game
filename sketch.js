@@ -267,8 +267,8 @@ function draw() {
     }
 
     if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
-      die.play();
-      gameState = END;
+//       die.play();
+//       gameState = END;
     }
 
   } else if (gameState === END) {
