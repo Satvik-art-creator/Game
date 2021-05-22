@@ -227,7 +227,7 @@ function draw() {
       if(robin.y >= height-98.5){
         robin.velocityY = -12;
         robin.changeAnimation("running", robin_running);
-        //jump.play();
+        jump.play();
       }
     });
 
@@ -341,7 +341,7 @@ function draw() {
 //   if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-98.5){
 //     robin.velocityY = -10.5;
 //     robin.changeAnimation("running", robin_running);
-//     //jump.play();
+//     jump.play();
 //   }
 // }
 
@@ -353,7 +353,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
-      //jump.play();
+      jump.play();
     }
 
     robin.velocityY  = robin.velocityY + 0.8;
@@ -366,12 +366,12 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
-      //jump.play();
+      jump.play();
     }
 
     robin.velocityY = robin.velocityY + 0.8;
 
-//     wind.play();
+    wind.play();
 
     spawnhurdles();
   } else if(score >= 500 && score < 1000){
@@ -383,7 +383,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
-      //jump.play();
+      jump.play();
 
     }
 
@@ -401,7 +401,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
-      //jump.play();
+      jump.play();
 
     }
 
@@ -424,7 +424,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
-      //jump.play();
+      jump.play();
 
     }
 
@@ -449,7 +449,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
-      //jump.play();
+      jump.play();
 
     }
 
