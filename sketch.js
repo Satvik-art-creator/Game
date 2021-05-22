@@ -419,6 +419,8 @@ function backgroundChanger(){
     spawnGhostObs();
   } else if(score >=1500 && score < 2000){
     background(rgb(22, 19, 20));
+    
+    fill("white");
 
     //velocity of Robin
     if (keyDown("space") && robin.y >= height-98.5) {
