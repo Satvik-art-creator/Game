@@ -228,13 +228,13 @@ function draw() {
       if(robin.y >= height-98.5){
         robin.velocityY = -11;
         robin.changeAnimation("running", robin_running);
-        jump.play();
+        jump.stop();
       }
     });
 
     if (keyWentDown("s") && frameCount % 55 != 0) {
       robin.changeImage("slide", robin_slide);
-//       sliding.play();
+//       sliding.stop();
       invisibleGround.y = height-72;
       robin.y = height-72;
       robin.velocityY=0;
@@ -246,7 +246,7 @@ function draw() {
     $(window).bind("swipe.down", function() {
       if(frameCount % 55 != 0){
         robin.changeImage("slide", robin_slide);
-//         sliding.play();
+//         sliding.stop();
         invisibleGround.y = height-72;
         robin.y = height-72;
         robin.velocityY=0;
@@ -264,12 +264,12 @@ function draw() {
     // text(`Total Time you had Played : ${Math.floor(sec/60)} min ${sec - Math.floor(sec/60) * 60} sec`, 30, 50);
 
     if (score > 0 && score % 100 === 0) {
-      check.play();
+      check.stop();
       check.setVolume(0.2);
     }
 
 //     if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
-//       die.play();
+//       die.stop();
 //       gameState = END;
 //     }
 
@@ -342,7 +342,7 @@ function draw() {
 //   if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-98.5){
 //     robin.velocityY = -10.5;
 //     robin.changeAnimation("running", robin_running);
-//     jump.play();
+//     jump.stop();
 //   }
 // }
 
@@ -354,7 +354,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
-      jump.play();
+      jump.stop();
     }
 
     robin.velocityY  = robin.velocityY + 0.8;
@@ -367,12 +367,12 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
-      jump.play();
+      jump.stop();
     }
 
     robin.velocityY = robin.velocityY + 0.8;
 
-    wind.play();
+    wind.stop();
 
     spawnhurdles();
   } else if(score >= 1000 && score < 2000){
@@ -384,13 +384,13 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
-      jump.play();
+      jump.stop();
 
     }
 
     robin.velocityY = robin.velocityY + 0.8;
 
-    sunny.play();
+    sunny.stop();
 
     spawnObstacles();
   } else if(score >=2000 && score < 3000){
@@ -402,7 +402,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
-      jump.play();
+      jump.stop();
 
     }
 
@@ -415,7 +415,7 @@ function backgroundChanger(){
     Star();
     TransGhost();
 
-    wolfHowl.play();
+    wolfHowl.stop();
 
     spawnGhostObs();
   } else if(score >=3000 && score < 4000){
@@ -427,7 +427,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
-      jump.play();
+      jump.stop();
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -437,7 +437,7 @@ function backgroundChanger(){
 
     //spawing the effect
     Rain();
-    raining.play();
+    raining.stop();
 
     thunderBolt();  
 
@@ -450,7 +450,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
-      jump.play();
+      jump.stop();
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -569,7 +569,7 @@ function thunderBolt(){
       thunder = createSprite(Math.floor(random(50,width-50)),0,2,2);
       thunder.scale = 0.6;
 
-      thunderStr.play();
+      thunderStr.stop();
       thunderStr.setVolume(0.2);
       
       //generate random lightnings
