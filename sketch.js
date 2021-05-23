@@ -234,7 +234,7 @@ function draw() {
 
     if (keyWentDown("s") && frameCount % 55 != 0) {
       robin.changeImage("slide", robin_slide);
-      sliding.play();
+//       sliding.play();
       invisibleGround.y = height-72;
       robin.y = height-72;
       robin.velocityY=0;
@@ -246,7 +246,7 @@ function draw() {
     $(window).bind("swipe.down", function() {
       if(frameCount % 55 != 0){
         robin.changeImage("slide", robin_slide);
-        sliding.play();
+//         sliding.play();
         invisibleGround.y = height-72;
         robin.y = height-72;
         robin.velocityY=0;
@@ -268,10 +268,10 @@ function draw() {
       check.setVolume(0.2);
     }
 
-    if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
-      die.play();
-      gameState = END;
-    }
+//     if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
+//       die.play();
+//       gameState = END;
+//     }
 
   } else if (gameState === END) {
     GroupClouds.setVelocityXEach(0);
@@ -420,6 +420,8 @@ function backgroundChanger(){
     spawnGhostObs();
   } else if(score >=3000 && score < 4000){
     background(rgb(22, 19, 20));
+    
+    fill("white");
 
     //velocity of Robin
     if (keyDown("space") && robin.y >= height-98.5) {
