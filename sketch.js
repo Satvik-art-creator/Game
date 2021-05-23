@@ -38,7 +38,7 @@ var thunder, thunderImage1, thunderImage2, thunderImage3, thunderImage4;
 var star = [];
 var starImage;
 
-var score = 0;
+var score = 3000;
 
 localStorage["HighestScore"] = 0;
 
@@ -216,7 +216,8 @@ function draw() {
 
   if (gameState === PLAY) {
 
-    score = score + Math.round(getFrameRate() / 60);
+    score = score + Math.round(getFrameRate() / 40);
+
     ground.velocityX = -(6 +  Math.round(score / 100));
 
     if (ground.x < 0) {
@@ -225,7 +226,7 @@ function draw() {
     
     $(window).bind("tap", function() {
       if(robin.y >= height-98.5){
-        robin.velocityY = -12;
+        robin.velocityY = -11;
         robin.changeAnimation("running", robin_running);
         jump.play();
       }
@@ -264,6 +265,7 @@ function draw() {
 
     if (score > 0 && score % 100 === 0) {
       check.play();
+      check.setVolume(0.2);
     }
 
     if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
@@ -287,7 +289,6 @@ function draw() {
     ground.velocityX = 0;
     robin.velocityY = 0;
     
-    raining.stop();
     wolfHowl.stop();
     wind.stop();
     sunny.stop();
@@ -322,8 +323,8 @@ function draw() {
     localStorage["HighestScore"] = score;
   }
 
-  fill("black");
-  textSize(15);
+  fill("grey");
+  textSize(17);
   text("Score: " + score, width-200, 50);
   text("High Score: " + localStorage["HighestScore"], width-350, 50);
 
@@ -346,7 +347,7 @@ function draw() {
 // }
 
 function backgroundChanger(){
-  if(score >= 0 && score < 250){
+  if(score >= 0 && score < 500){
     background("white");
 
     //? velocity of Robin
@@ -359,7 +360,7 @@ function backgroundChanger(){
     robin.velocityY  = robin.velocityY + 0.8;
 
     spawnhurdles();
-  } else if(score >= 250 && score < 500){
+  } else if(score >= 500 && score < 1000){
     background(rgb(141, 163, 153));
 
     //?velocity of Robin
@@ -374,7 +375,7 @@ function backgroundChanger(){
     wind.play();
 
     spawnhurdles();
-  } else if(score >= 500 && score < 1000){
+  } else if(score >= 1000 && score < 2000){
     background(rgb(255, 219, 96));
     //?sun visibility
     Sun.visible=true;
@@ -392,7 +393,7 @@ function backgroundChanger(){
     sunny.play();
 
     spawnObstacles();
-  } else if(score >=1000 && score < 1500){
+  } else if(score >=2000 && score < 3000){
     background(rgb(42,42,53));
     //sun visibility
     Sun.visible=false;
@@ -417,15 +418,14 @@ function backgroundChanger(){
     wolfHowl.play();
 
     spawnGhostObs();
-  } else if(score >=1500 && score < 2000){
+  } else if(score >=3000 && score < 4000){
     background(rgb(22, 19, 20));
 
     //velocity of Robin
     if (keyDown("space") && robin.y >= height-98.5) {
-      robin.velocityY = -12;
+      robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
       jump.play();
-
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -435,10 +435,9 @@ function backgroundChanger(){
 
     //spawing the effect
     Rain();
-    thunderBolt();
-
     raining.play();
-    
+
+    thunderBolt();  
 
     //spawning the creatures
     spawnCreatures();
@@ -447,10 +446,9 @@ function backgroundChanger(){
 
     //velocity of Robin
     if (keyDown("space") && robin.y >= height-98.5) {
-      robin.velocityY = -12;
+      robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
       jump.play();
-
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -542,11 +540,11 @@ function Rain(){
   } 
   
   else{
-    for(var i=0; i<4; i++){
+    for(var i=0; i<2; i++){
       drop[i] = createSprite(Math.floor(random(0,width)),0,3,3);
     }
 
-    for(var i=0; i<4; i++){
+    for(var i=0; i<2; i++){
       drop[i].addImage(dropImage);
       drop[i].scale=0.05;
       drop[i].velocityY=12;
@@ -570,6 +568,7 @@ function thunderBolt(){
       thunder.scale = 0.6;
 
       thunderStr.play();
+      thunderStr.setVolume(0.2);
       
       //generate random lightnings
       let rand = Math.floor(random(1,4));
@@ -744,7 +743,7 @@ function spawnGhostObs(){
   if(gameState === END){
 
      //generate random number
-     let rand = Math.floor(random(1,2));
+     let rand = Math.floor(random(1,3));
 
      switch(rand){
        case 1: ghostObs.changeAnimation("flyGhostIdle", ghostIdle1);
@@ -767,7 +766,7 @@ function spawnGhostObs(){
       // ghostObs.debug=true;
 
       //generate random number
-      let rand = Math.floor(random(1,3));
+      let rand = Math.floor(random(1,4));
 
       switch(rand){
         case 1: ghostObs.addAnimation("flyingGhost", animateGhost1);
@@ -816,7 +815,7 @@ function spawnCreatures(){
   if(gameState === END){
 
     //generate random number
-    let rand = Math.floor(random(1,2));
+    let rand = Math.floor(random(1,3));
 
     switch(rand){
       case 1: creatureObs.changeAnimation("robotIdle", creatureImage1);
@@ -835,11 +834,12 @@ function spawnCreatures(){
     return;
   } else if(frameCount % 30 === 0){    
       creatureObs = createSprite(width, 0 , 10, 10);
-      creatureObs.velocityX = -(11 + Math.floor(score / 100));
+      creatureObs.velocityX = -(10 + Math.floor(score / 100));
       // creatureObs.debug=true;
 
       //generate random number
-      let rand = Math.floor(random(1,3));
+      let rand = Math.floor(random(1,4));
+      // console.log(rand);
 
       switch(rand){
         case 1: creatureObs.addAnimation("movingRobot", animateCreature1);
@@ -887,7 +887,7 @@ function spawnALL(){
   if(gameState != PLAY){
 
     //generate random number
-    let rand = Math.floor(random(9,12));
+    let rand = Math.floor(random(9,13));
 
     switch(rand){
       case 9: All.changeAnimation("flyGhostIdle", ghostIdle1);
@@ -912,10 +912,10 @@ function spawnALL(){
     return;
   } else if(frameCount % 28 === 0){
     All = createSprite(width,0,50,50);
-    All.velocityX = -(11 + Math.floor(score / 100));
+    All.velocityX = -(10 + Math.floor(score / 100));
 
     //generate random number
-    let randNum = Math.floor(random(1,13));
+    let randNum = Math.floor(random(1,14));
 
     switch(randNum){
       case 1: All.addImage("Sprites/Hurdles1", hurdleImages1);
