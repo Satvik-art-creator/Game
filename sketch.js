@@ -38,7 +38,7 @@ var thunder, thunderImage1, thunderImage2, thunderImage3, thunderImage4;
 var star = [];
 var starImage;
 
-var score = 3000;
+var score = 0;
 
 localStorage["HighestScore"] = 0;
 
@@ -268,10 +268,10 @@ function draw() {
       check.setVolume(0.2);
     }
 
-//     if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
-//       die.stop();
-//       gameState = END;
-//     }
+    if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
+      die.stop();
+      gameState = END;
+    }
 
   } else if (gameState === END) {
     GroupClouds.setVelocityXEach(0);
