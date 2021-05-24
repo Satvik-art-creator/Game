@@ -38,7 +38,7 @@ var thunder, thunderImage1, thunderImage2, thunderImage3, thunderImage4;
 var star = [];
 var starImage;
 
-var score = 0;
+var score = 2000;
 
 localStorage["HighestScore"] = 0;
 
@@ -492,7 +492,7 @@ function spawnClouds() {
     return;
   } else if (frameCount % 40 === 0) {
       cloud = createSprite(width, 0, 40, 10);
-      cloud.y = random(height-300, height-800);
+      cloud.y = random(200, height-300);
       cloud.addImage("cloud", cloudImages);
       cloud.scale = 0.5;
       cloud.velocityX = -(3 + Math.floor(score / 100));
@@ -518,7 +518,7 @@ function Star(){
   
   else{
     for(var s=0; s<2; s++){
-      star[s] = createSprite(Math.floor(random(0,width)),Math.floor(random(height-300,height-540)),4,9);
+      star[s] = createSprite(Math.floor(random(0,width)),Math.floor(random(200,height-300)),4,9);
     }
 
     for(var s=0; s<2; s++){
