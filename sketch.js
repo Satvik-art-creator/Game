@@ -160,7 +160,7 @@ function setup() {
   ground = createSprite(width/2, height, width, 20);
   ground.addImage("ground", groundImage);
   ground.x = width / 2 - width;
-  ground.velocityX = -(6 +  Math.floor(score / 100));
+  ground.velocityX = -(3 +  Math.floor(score / 200));
 
   ground.depth = robin.depth;
   robin.depth = robin.depth+1;
@@ -218,7 +218,7 @@ function draw() {
 
     score = score + Math.round(getFrameRate() / 40);
 
-    ground.velocityX = -(3 +  Math.round(score / 100));
+    ground.velocityX = -(3 +  Math.round(score / 200));
 
     if (ground.x < 0) {
       ground.x = ground.width / 2;
@@ -406,7 +406,7 @@ function backgroundChanger(){
 
     }
 
-    robin.velocityY = robin.velocityY + 0.8;
+    robin.velocityY = robin.velocityY + 0.7;
 
     //visibility
     Moon.visible=true;
@@ -492,7 +492,7 @@ function spawnClouds() {
     return;
   } else if (frameCount % 40 === 0) {
       cloud = createSprite(width, 0, 40, 10);
-      cloud.y = random(100, 250);
+      cloud.y = random(height-100, height-250);
       cloud.addImage("cloud", cloudImages);
       cloud.scale = 0.5;
       cloud.velocityX = -(3 + Math.floor(score / 100));
@@ -764,7 +764,7 @@ function spawnGhostObs(){
     return;
   } else if(frameCount % 35 === 0){
       ghostObs = createSprite(width, 0 , 50, 50);
-      ghostObs.velocityX = -(10 + Math.floor(score / 100));
+      ghostObs.velocityX = -(9 + Math.floor(score / 100));
       // ghostObs.debug=true;
 
       //generate random number
@@ -836,7 +836,7 @@ function spawnCreatures(){
     return;
   } else if(frameCount % 30 === 0){    
       creatureObs = createSprite(width, 0 , 10, 10);
-      creatureObs.velocityX = -(10 + Math.floor(score / 100));
+      creatureObs.velocityX = -(7 + Math.floor(score / 100));
       // creatureObs.debug=true;
 
       //generate random number
@@ -912,9 +912,9 @@ function spawnALL(){
     robin.depth = robin.depth+1;
 
     return;
-  } else if(frameCount % 28 === 0){
+  } else if(frameCount % 30 === 0){
     All = createSprite(width,0,50,50);
-    All.velocityX = -(10 + Math.floor(score / 100));
+    All.velocityX = -(6 + Math.floor(score / 100));
 
     //generate random number
     let randNum = Math.floor(random(1,14));
