@@ -290,13 +290,6 @@ function draw() {
     robin.changeAnimation("RIP", robin_RIP);
     ground.velocityX = 0;
     robin.velocityY = 0;
-    
-    wolfHowl.play();
-    wind.play();
-    sunny.play();
-    thunderStr.play();
-
-    jump.play();
 
     GroupClouds.setLifetimeEach(-1);
     GroupHurdles.setLifetimeEach(-1);
