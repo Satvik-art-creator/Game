@@ -38,7 +38,7 @@ var thunder, thunderImage1, thunderImage2, thunderImage3, thunderImage4;
 var star = [];
 var starImage;
 
-var score = 2000;
+var score = 3000;
 
 localStorage["HighestScore"] = 0;
 
