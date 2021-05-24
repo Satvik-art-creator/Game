@@ -228,7 +228,7 @@ function draw() {
       if(robin.y >= height-98.5){
         robin.velocityY = -11;
         robin.changeAnimation("running", robin_running);
-        jump.play();
+        jump.stop();
         jump.setVolume(0.1);
       }
     });
@@ -269,10 +269,11 @@ function draw() {
       check.setVolume(0.2);
     }
 
-    // if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
-    //   die.play();
-    //   gameState = END;
-    // }
+    if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
+      die.play();
+      die.setVolume(0.2);
+      gameState = END;
+    }
 
   } else if (gameState === END) {
     GroupClouds.setVelocityXEach(0);
