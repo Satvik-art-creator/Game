@@ -38,7 +38,7 @@ var thunder, thunderImage1, thunderImage2, thunderImage3, thunderImage4;
 var star = [];
 var starImage;
 
-var score = 2000;
+var score = 3000;
 
 localStorage["HighestScore"] = 0;
 
@@ -436,8 +436,8 @@ function backgroundChanger(){
     Moon.visible=false;
 
     //spawing the effect
-    Rain();
-    raining.stop();
+    // Rain();
+    // raining.stop();
 
     thunderBolt();  
 
@@ -551,7 +551,7 @@ function Rain(){
       drop[i].scale=0.05;
       drop[i].velocityY=12;
 
-      drop[i].lifetime = height-80;
+      drop[i].lifetime = 45;
 
       //adjust the depth
       drop[i].depth = robin.depth;
