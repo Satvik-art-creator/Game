@@ -492,7 +492,7 @@ function spawnClouds() {
     return;
   } else if (frameCount % 40 === 0) {
       cloud = createSprite(width, 0, 40, 10);
-      cloud.y = random(height-100, height-250);
+      cloud.y = random(height-300, height-600);
       cloud.addImage("cloud", cloudImages);
       cloud.scale = 0.5;
       cloud.velocityX = -(3 + Math.floor(score / 100));
