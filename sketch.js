@@ -229,7 +229,7 @@ function draw() {
         robin.velocityY = -11;
         robin.changeAnimation("running", robin_running);
         jump.play();
-        jump.setVolume(0.2);
+        jump.setVolume(0.1);
       }
     });
 
