@@ -38,7 +38,7 @@ var thunder, thunderImage1, thunderImage2, thunderImage3, thunderImage4;
 var star = [];
 var starImage;
 
-var score = 3000;
+var score = 0;
 
 localStorage["HighestScore"] = 0;
 
@@ -228,13 +228,13 @@ function draw() {
       if(robin.y >= height-98.5){
         robin.velocityY = -11;
         robin.changeAnimation("running", robin_running);
-        jump.stop();
+        jump.play();
       }
     });
 
     if (keyWentDown("s") && frameCount % 55 != 0) {
       robin.changeImage("slide", robin_slide);
-//       sliding.stop();
+//       sliding.play();
       invisibleGround.y = height-72;
       robin.y = height-72;
       robin.velocityY=0;
@@ -246,7 +246,7 @@ function draw() {
     $(window).bind("swipe.down", function() {
       if(frameCount % 55 != 0){
         robin.changeImage("slide", robin_slide);
-//         sliding.stop();
+//         sliding.play();
         invisibleGround.y = height-72;
         robin.y = height-72;
         robin.velocityY=0;
@@ -264,12 +264,12 @@ function draw() {
     // text(`Total Time you had Played : ${Math.floor(sec/60)} min ${sec - Math.floor(sec/60) * 60} sec`, 30, 50);
 
     if (score > 0 && score % 100 === 0) {
-      check.stop();
+      check.play();
       check.setVolume(0.2);
     }
 
     // if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
-    //   die.stop();
+    //   die.play();
     //   gameState = END;
     // }
 
@@ -289,12 +289,12 @@ function draw() {
     ground.velocityX = 0;
     robin.velocityY = 0;
     
-    wolfHowl.stop();
-    wind.stop();
-    sunny.stop();
-    thunderStr.stop();
+    wolfHowl.play();
+    wind.play();
+    sunny.play();
+    thunderStr.play();
 
-    jump.stop();
+    jump.play();
 
     GroupClouds.setLifetimeEach(-1);
     GroupHurdles.setLifetimeEach(-1);
@@ -342,7 +342,7 @@ function draw() {
 //   if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-98.5){
 //     robin.velocityY = -10.5;
 //     robin.changeAnimation("running", robin_running);
-//     jump.stop();
+//     jump.play();
 //   }
 // }
 
@@ -354,7 +354,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
-      jump.stop();
+      jump.play();
     }
 
     robin.velocityY  = robin.velocityY + 0.8;
@@ -367,12 +367,12 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
-      jump.stop();
+      jump.play();
     }
 
     robin.velocityY = robin.velocityY + 0.8;
 
-    wind.stop();
+    // wind.play();
 
     spawnhurdles();
   } else if(score >= 1000 && score < 2000){
@@ -384,13 +384,13 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
-      jump.stop();
+      jump.play();
 
     }
 
     robin.velocityY = robin.velocityY + 0.8;
 
-    sunny.stop();
+    // sunny.play();
 
     spawnObstacles();
   } else if(score >=2000 && score < 3000){
@@ -402,7 +402,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
-      jump.stop();
+      jump.play();
 
     }
 
@@ -415,7 +415,7 @@ function backgroundChanger(){
     Star();
     TransGhost();
 
-    wolfHowl.stop();
+    // wolfHowl.play();
 
     spawnGhostObs();
   } else if(score >=3000 && score < 4000){
@@ -427,7 +427,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
-      jump.stop();
+      jump.play();
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -437,7 +437,7 @@ function backgroundChanger(){
 
     //spawing the effect
     // Rain();
-    // raining.stop();
+    // raining.play();
 
     thunderBolt();  
 
@@ -450,7 +450,7 @@ function backgroundChanger(){
     if (keyDown("space") && robin.y >= height-98.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
-      jump.stop();
+      jump.play();
     }
 
     robin.velocityY = robin.velocityY + 0.8;
@@ -569,7 +569,7 @@ function thunderBolt(){
       thunder = createSprite(Math.floor(random(50,width-50)),0,2,2);
       thunder.scale = 0.7;
 
-      thunderStr.stop();
+      thunderStr.play();
       thunderStr.setVolume(0.2);
       
       //generate random lightnings
@@ -912,9 +912,9 @@ function spawnALL(){
     robin.depth = robin.depth+1;
 
     return;
-  } else if(frameCount % 30 === 0){
+  } else if(frameCount % 35 === 0){
     All = createSprite(width,0,50,50);
-    All.velocityX = -(6 + Math.floor(score / 100));
+    All.velocityX = -(5 + Math.floor(score / 150));
 
     //generate random number
     let randNum = Math.floor(random(1,14));
