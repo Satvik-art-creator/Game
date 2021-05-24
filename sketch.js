@@ -324,9 +324,9 @@ function draw() {
   }
 
   fill("grey");
-  textSize(17);
-  text("Score: " + score, width-200, 50);
-  text("High Score: " + localStorage["HighestScore"], width-350, 50);
+  textSize(20);
+  text("Score: " + score, width/2, 50);
+  text("High Score: " + localStorage["HighestScore"], width/2-180, 50);
 
   drawSprites();
 
@@ -551,7 +551,7 @@ function Rain(){
       drop[i].scale=0.05;
       drop[i].velocityY=12;
 
-      drop[i].lifetime = 45;
+      drop[i].lifetime = height-80;
 
       //adjust the depth
       drop[i].depth = robin.depth;
@@ -567,7 +567,7 @@ function thunderBolt(){
     return;
   } else if(frameCount % 65 === 0){
       thunder = createSprite(Math.floor(random(50,width-50)),0,2,2);
-      thunder.scale = 0.6;
+      thunder.scale = 0.7;
 
       thunderStr.stop();
       thunderStr.setVolume(0.2);
@@ -712,7 +712,7 @@ function TransGhost(){
   if(gameState === END){
     return;
   } else if(frameCount % 45 === 0){
-      transGhost = createSprite(0,Math.floor(random(height-110,height-200)),13,18);
+      transGhost = createSprite(Math.floor(random(0,width)),Math.floor(random(200,height-110)),13,18);
       transGhost.scale=0.3;
       //generate random numbers
       let rand = Math.floor(random(1,2));

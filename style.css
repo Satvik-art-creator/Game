@@ -5,10 +5,3 @@ html, body {
 canvas {
   display: block;
 }
-
-.top{
-  width: 100vw;
-  height: 50px;
-  background-color: black;
-  opacity: 0.1;
-}
