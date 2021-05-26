@@ -308,7 +308,6 @@ function draw() {
 
     if (mousePressedOver(restart) || keyDown("enter") || touches.length>0) {
       reset();
-
     }
   }
 
@@ -318,10 +317,10 @@ function draw() {
     localStorage["HighestScore"] = score;
   }
 
-  fill("grey");
-  textSize(20);
+  fill("#65000A");
+  textSize(22);
   text("Score: " + score, width/2, 50);
-  text("High Score: " + localStorage["HighestScore"], width/2-180, 50);
+  text("High Score: " + localStorage["HighestScore"], width/2-200, 50);
 
   drawSprites();
 
@@ -342,7 +341,7 @@ function draw() {
 // }
 
 function backgroundChanger(){
-  if(score >= 0 && score < 500){
+  if(score >= 0 && score < 1000){
     background("white");
 
     //? velocity of Robin
@@ -355,7 +354,7 @@ function backgroundChanger(){
     robin.velocityY  = robin.velocityY + 0.8;
 
     spawnhurdles();
-  } else if(score >= 500 && score < 1000){
+  } else if(score >= 1000 && score < 2000){
     background(rgb(141, 163, 153));
 
     //?velocity of Robin
@@ -370,7 +369,7 @@ function backgroundChanger(){
     // wind.play();
 
     spawnhurdles();
-  } else if(score >= 1000 && score < 2000){
+  } else if(score >= 2000 && score < 3000){
     background(rgb(255, 219, 96));
     //?sun visibility
     Sun.visible=true;
@@ -388,7 +387,7 @@ function backgroundChanger(){
     // sunny.play();
 
     spawnObstacles();
-  } else if(score >=2000 && score < 3000){
+  } else if(score >=3000 && score < 4000){
     background(rgb(42,42,53));
     //sun visibility
     Sun.visible=false;
@@ -413,7 +412,7 @@ function backgroundChanger(){
     // wolfHowl.play();
 
     spawnGhostObs();
-  } else if(score >=3000 && score < 4000){
+  } else if(score >=4000 && score < 5000){
     background(rgb(22, 19, 20));
     
     fill("white");
@@ -909,7 +908,7 @@ function spawnALL(){
     return;
   } else if(frameCount % 35 === 0){
     All = createSprite(width,0,50,50);
-    All.velocityX = -(5 + Math.floor(score / 150));
+    All.velocityX = -(7 + Math.floor(score / 150));
 
     //generate random number
     let randNum = Math.floor(random(1,14));
