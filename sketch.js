@@ -149,12 +149,12 @@ function setup() {
 
   // console.log(height);
 
-  robin = createSprite(100, height-160, 20, 55);
+  robin = createSprite(100, height-160, 20, 70);
   robin.setCollider("rectangle",0,0,25,31);
   robin.addAnimation("running", robin_running);
   robin.addImage("slide", robin_slide);
   robin.addAnimation("RIP", robin_RIP);
-  robin.scale = 1;
+  robin.scale = 1.3;
   robin.debug=false;
 
   ground = createSprite(width/2, height-80, width, 20);
@@ -225,7 +225,7 @@ function draw() {
     }
     
     $(window).bind("tap", function() {
-      if(robin.y >= height-175.5){
+      if(robin.y >= height-180.5){
         robin.velocityY = -11;
         robin.changeAnimation("running", robin_running);
         jump.stop();
@@ -248,8 +248,8 @@ function draw() {
       if(frameCount % 55 != 0){
         robin.changeImage("slide", robin_slide);
 //         sliding.play();
-        invisibleGround.y = height-72;
-        robin.y = height-72;
+        invisibleGround.y = height-150;
+        robin.y = height-150;
         robin.velocityY=0;
       } else{
         robin.changeAnimation("running", robin_running);
@@ -333,7 +333,7 @@ function draw() {
 
 //   // console.log(results[0].label, results[0].confidence);
   
-//   if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-175.5){
+//   if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-180.5){
 //     robin.velocityY = -10.5;
 //     robin.changeAnimation("running", robin_running);
 //     jump.play();
@@ -345,7 +345,7 @@ function backgroundChanger(){
     background("white");
 
     //? velocity of Robin
-    if (keyDown("space") && robin.y >= height-175.5) {
+    if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -358,7 +358,7 @@ function backgroundChanger(){
     background(rgb(141, 163, 153));
 
     //?velocity of Robin
-    if (keyDown("space") && robin.y >= height-175.5) {
+    if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -375,7 +375,7 @@ function backgroundChanger(){
     Sun.visible=true;
 
     //velocity of Robin
-    if (keyDown("space") && robin.y >= height-175.5) {
+    if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -393,7 +393,7 @@ function backgroundChanger(){
     Sun.visible=false;
 
     //velocity of Robin
-    if (keyDown("space") && robin.y >= height-175.5) {
+    if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -12;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -418,7 +418,7 @@ function backgroundChanger(){
     fill("white");
 
     //velocity of Robin
-    if (keyDown("space") && robin.y >= height-175.5) {
+    if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -441,7 +441,7 @@ function backgroundChanger(){
     background(backgroundImg);
 
     //velocity of Robin
-    if (keyDown("space") && robin.y >= height-175.5) {
+    if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
       jump.play();
