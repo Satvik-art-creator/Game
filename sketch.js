@@ -38,7 +38,7 @@ var thunder, thunderImage1, thunderImage2, thunderImage3, thunderImage4;
 var star = [];
 var starImage;
 
-var score = 0;
+var score = 3000;
 
 localStorage["HighestScore"] = 0;
 
@@ -233,7 +233,7 @@ function draw() {
       }
     });
 
-    if (keyWentDown("s") && frameCount % 55 != 0) {
+    if (keyWentDown("s") && frameCount % 50 != 0) {
       robin.changeImage("slide", robin_slide);
 //       sliding.play();
       invisibleGround.y = height-150;
@@ -245,7 +245,7 @@ function draw() {
     }
     
     $(window).bind("swipe.down", function() {
-      if(frameCount % 55 != 0){
+      if(frameCount % 50 != 0){
         robin.changeImage("slide", robin_slide);
 //         sliding.play();
         invisibleGround.y = height-150;
@@ -530,31 +530,31 @@ function Star(){
   }
 }
 
-function Rain(){
-  if(gameState === END){
-    return;
-  } 
+// function Rain(){
+//   if(gameState === END){
+//     return;
+//   } 
   
-  else{
-    for(var i=0; i<2; i++){
-      drop[i] = createSprite(Math.floor(random(0,width)),0,3,3);
-    }
+//   else{
+//     for(var i=0; i<2; i++){
+//       drop[i] = createSprite(Math.floor(random(0,width)),0,3,3);
+//     }
 
-    for(var i=0; i<2; i++){
-      drop[i].addImage(dropImage);
-      drop[i].scale=0.05;
-      drop[i].velocityY=12;
+//     for(var i=0; i<2; i++){
+//       drop[i].addImage(dropImage);
+//       drop[i].scale=0.05;
+//       drop[i].velocityY=12;
 
-      drop[i].lifetime = 45;
+//       drop[i].lifetime = 45;
 
-      //adjust the depth
-      drop[i].depth = robin.depth;
-      robin.depth = robin.depth + 1;
+//       //adjust the depth
+//       drop[i].depth = robin.depth;
+//       robin.depth = robin.depth + 1;
 
-      GroupRain.add(drop[i]);
-    }
-  }
-}
+//       GroupRain.add(drop[i]);
+//     }
+//   }
+// }
 
 function thunderBolt(){
   if(gameState === END){
@@ -609,7 +609,7 @@ function spawnhurdles() {
       hurdle.debug=false;
 
       //generate random hurdles
-      let rand = Math.floor(random(1, 4));
+      let rand = Math.floor(random(1, 5));
 
       switch (rand) {
         case 1: hurdle.addImage("Sprites/Hurdles1", hurdleImages1);
@@ -662,7 +662,7 @@ function spawnObstacles() {
       // obstacle.debug=true;
 
       //generate random hurdles
-      let rand = Math.floor(random(1, 3));
+      let rand = Math.floor(random(1, 4));
 
       switch (rand) {
         case 1: obstacle.addAnimation("spinner", animateSpin);
@@ -677,13 +677,13 @@ function spawnObstacles() {
       }
 
       if (rand === 1) {
-        obstacle.y = height-95;
+        obstacle.y = height-186;
         obstacle.scale=0.21;
       } else if(rand === 2) {
-        obstacle.y = height-108;
+        obstacle.y = height-186;
         obstacle.scale=0.15;
       } else{
-        obstacle.y = height-113;
+        obstacle.y = height-186;
         obstacle.scale=0.27;
         // obstacle.debug=true;
         obstacle.setCollider("rectangle",0,0,115,275);
@@ -706,10 +706,10 @@ function TransGhost(){
   if(gameState === END){
     return;
   } else if(frameCount % 45 === 0){
-      transGhost = createSprite(Math.floor(random(0,width)),Math.floor(random(200,height-110)),13,18);
+      transGhost = createSprite(Math.floor(random(0,width)),Math.floor(random(200,height-210)),13,18);
       transGhost.scale=0.3;
       //generate random numbers
-      let rand = Math.floor(random(1,2));
+      let rand = Math.floor(random(1,3));
 
       switch(rand){
         case 1: transGhost.x=0;
@@ -780,15 +780,15 @@ function spawnGhostObs(){
       }
 
       if(rand ===  1){
-        ghostObs.y = Math.floor(random(height-110,height-130));
+        ghostObs.y = Math.floor(random(height-200,height-215));
         ghostObs.scale = 0.4;
       } else if(rand === 3){
-        ghostObs.y = Math.floor(random(height-100,height-125));
+        ghostObs.y = Math.floor(random(height-185,height-215));
         ghostObs.scale = 0.3;
         // ghostObs.debug = true;
         ghostObs.setCollider("rectangle",0,0,170,168);
       } else{
-        ghostObs.y = height-103;
+        ghostObs.y = height-185;
         ghostObs.scale = 0.3;
       }
       
@@ -853,15 +853,15 @@ function spawnCreatures(){
       }
 
       if(rand ===  1){
-        creatureObs.y = height-108;
+        creatureObs.y = height-185;
         creatureObs.scale = 0.2;
         // creatureObs.debug=true;
         creatureObs.setCollider("rectangle",0,0,300,320);
       } else if(rand === 2){
-        creatureObs.y = height-100;
+        creatureObs.y = height-185;
         creatureObs.scale = 0.14;
       } else{
-        creatureObs.y = height-153;
+        creatureObs.y = height-240;
         creatureObs.scale = 0.17;
         // creatureObs.debug=true;
       }
@@ -959,44 +959,44 @@ function spawnALL(){
     }
 
     if (randNum === 1 || randNum === 2) {
-      All.y = height-95;
+      All.y = height-175;
       All.scale = 1.3;
     } else if(randNum === 3 || randNum === 4) {
-      All.y = Math.floor(random(height-100,height-125));
+      All.y = Math.floor(random(height-180,height-210));
       All.scale = 0.6;
       // console.log(All.y);
     } else if (randNum === 5) {
-      All.y = height-95;
+      All.y = height-186;
       All.scale=0.21;
     } else if(randNum === 6) {
-      All.y = height-108;
+      All.y = height-186;
       All.scale=0.15;
     } else if(randNum === 7) {
-      All.y = height-113;
+      All.y = height-186;
       All.scale=0.27;
       // All.debug=true;
       All.setCollider("rectangle",0,0,115,275);
     } else if(randNum ===  8){
-      All.y = Math.floor(random(height-100,height-125));
+      All.y = Math.floor(random(height-200,height-215));
       All.scale = 0.3;
       // All.debug = true;
       All.setCollider("rectangle",0,0,170,168);
     } else if(randNum === 9){
-      All.y = Math.floor(random(height-110,height-130));
+      All.y = Math.floor(random(height-180,height-215));
       All.scale = 0.4;
     } else if(randNum === 10){
-      All.y = height-103;
+      All.y = height-185;
       All.scale = 0.3;
     } else if(randNum ===  11){
-      All.y = height-108;
+      All.y = height-185;
       All.scale = 0.2;
       // All.debug=true;
       All.setCollider("rectangle",0,0,300,320);
     } else if(randNum === 12){
-      All.y = height-100;
+      All.y = height-185;
       All.scale = 0.14;
     } else{
-      All.y = height-153;
+      All.y = height-240;
       All.scale = 0.17;
       // All.debug=true;
     }
