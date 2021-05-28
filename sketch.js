@@ -157,7 +157,7 @@ function setup() {
   robin.scale = 1;
   robin.debug=false;
 
-  ground = createSprite(width/2, height/2+250, width, height/2+300);
+  ground = createSprite(width/2, height/2+300, width, 20);
   ground.addImage("ground", groundImage);
   ground.x = width / 2 - width;
   ground.velocityX = -(3 +  Math.floor(score / 200));
