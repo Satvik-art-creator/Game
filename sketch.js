@@ -1,4 +1,4 @@
-var robin, robin_running, robin_slide, robin_RIP;
+var robin, robinIdle, robin_running, robin_slide, robin_RIP;
 
 var ground, invisibleGround, groundImage, cloud, cloudImages, hurdle, hurdleImages1, hurdleImages2, hurdleImages3, hurdleImages4;
 
@@ -12,9 +12,10 @@ var BGM;
 
 var die, jump, check, sliding, raining, wolfHowl, wind, sunny, thunderStr;
 
+var SERVE = 2;
 var PLAY = 1;
 var END = 0;
-var gameState = PLAY;
+var gameState = SERVE;
 
 var All;
 
@@ -50,6 +51,8 @@ let classifier;
 
 function preload() {
   backgroundImg = loadImage("Sprites/backgroundImg.png");
+
+  robinIdle = loadAnimation("Sprites/Robin/robinRun/robinRun1.png");
   
   robin_running = loadAnimation("Sprites/Robin/robinRun/robinRun1.png", "Sprites/Robin/robinRun/robinRun2.png", "Sprites/Robin/robinRun/robinRun3.png", "Sprites/Robin/robinRun/robinRun4.png", "Sprites/Robin/robinRun/robinRun4.png", "Sprites/Robin/robinRun/robinRun5.png", "Sprites/Robin/robinRun/robinRun6.png", "Sprites/Robin/robinRun/robinRun7.png", "Sprites/Robin/robinRun/robinRun8.png", "Sprites/Robin/robinRun/robinRun9.png", "Sprites/Robin/robinRun/robinRun10.png", "Sprites/Robin/robinRun/robinRun11.png", "Sprites/Robin/robinRun/robinRun12.png");
 
@@ -151,6 +154,7 @@ function setup() {
 
   robin = createSprite(100, height-160, 20, 70);
   robin.setCollider("rectangle",0,0,25,31);
+  robin.addAnimation("idle", robinIdle);
   robin.addAnimation("running", robin_running);
   robin.addImage("slide", robin_slide);
   robin.addAnimation("RIP", robin_RIP);
@@ -214,7 +218,36 @@ function draw() {
 
   // console.log(robin.y);
 
-  if (gameState === PLAY) {
+  if(gameState === SERVE) {
+
+    textSize(25);
+    fill("blue");
+    textStyle(ITALIC);
+    text("Tap to Jump & Swipe Down to Slide", 60, height-530);
+    text("Tap anywhere on the screen to Start", 60, height-490);
+
+    ground.width = width;
+    ground.velocityX = 0;
+
+    if (ground.x < 0) {
+      ground.x = ground.width / 2;
+    }
+
+    GroupHurdles.destroyEach();
+
+    robin.velocityY=0;
+    robin.changeAnimation("Idle", robinIdle);
+    jump.stop(); 
+
+    $(window).bind("tap", function() {
+      gameState = PLAY;
+    });
+
+    if(keyWentDown("SPACE")){
+      gameState = PLAY;
+    }
+
+  } else if (gameState === PLAY) {
 
     score = score + Math.round(getFrameRate() / 40);
 
@@ -318,9 +351,10 @@ function draw() {
   }
 
   fill("#65000A");
-  textSize(22);
-  text("Score: " + score, width/2, 50);
-  text("High Score: " + localStorage["HighestScore"], width/2-200, 50);
+  textSize(25);
+  textStyle(BOLD);
+  text("Score: " + score, width/2, 80);
+  text("High Score: " + localStorage["HighestScore"], width/2-215, 80);
 
   drawSprites();
 
@@ -345,7 +379,7 @@ function backgroundChanger(){
     background("white");
 
     //? velocity of Robin
-    if (keyDown("space") && robin.y >= height-180.5) {
+    if (gameState === PLAY && keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -452,6 +486,10 @@ function backgroundChanger(){
     //spawing all Enemies
     spawnALL();
   }
+}
+
+function serve(){
+  gameState = PLAY;
 }
 
 function reset() {
