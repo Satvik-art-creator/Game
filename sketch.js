@@ -222,9 +222,9 @@ function draw() {
 
     textSize(25);
     fill("blue");
-    textStyle(ITALIC);
-    text("Tap to Jump & Swipe Down to Slide", 60, height-530);
-    text("Tap anywhere on the screen to Start", 60, height-490);
+    textStyle(BOLDITALIC);
+    text("Tap to Jump & Swipe Down to Slide", 60, 200);
+    text("Tap anywhere on the screen to Start", 60, 250);
 
     ground.width = width;
     ground.velocityX = 0;
@@ -243,7 +243,7 @@ function draw() {
       gameState = PLAY;
     });
 
-    if(keyWentDown("SPACE")){
+    if(keyWentDown("SPACE") || mousePressedOver()){
       gameState = PLAY;
     }
 
@@ -353,8 +353,8 @@ function draw() {
   fill("#65000A");
   textSize(25);
   textStyle(BOLD);
-  text("Score: " + score, width/2, 80);
-  text("High Score: " + localStorage["HighestScore"], width/2-215, 80);
+  text("Score: " + score, width/2, 100);
+  text("High Score: " + localStorage["HighestScore"], width/2-215, 100);
 
   drawSprites();
 
@@ -378,8 +378,9 @@ function backgroundChanger(){
   if(score >= 0 && score < 1000){
     background("white");
 
-    //? velocity of Robin
-    if (gameState === PLAY && keyDown("space") && robin.y >= height-180.5) {
+    if(gameState === PLAY){
+      robin.changeAnimation("running", robin_running);
+    } else if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -486,10 +487,6 @@ function backgroundChanger(){
     //spawing all Enemies
     spawnALL();
   }
-}
-
-function serve(){
-  gameState = PLAY;
 }
 
 function reset() {
