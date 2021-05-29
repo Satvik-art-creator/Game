@@ -256,15 +256,6 @@ function draw() {
     if (ground.x < 0) {
       ground.x = ground.width / 2;
     }
-    
-    $(window).bind("tap", function() {
-      if(robin.y >= height-180.5){
-        robin.velocityY = -11;
-        robin.changeAnimation("running", robin_running);
-        jump.stop();
-        jump.setVolume(0.1);
-      }
-    });
 
     if (keyWentDown("s") && frameCount % 50 != 0) {
       robin.changeImage("slide", robin_slide);
@@ -386,6 +377,14 @@ function backgroundChanger(){
       jump.play();
     }
 
+    $(window).bind("tap", function() {
+      if(robin.y >= height-180.5){
+        robin.velocityY = -10.5;
+        robin.changeAnimation("running", robin_running);
+        jump.stop();
+      }
+    });
+
     robin.velocityY  = robin.velocityY + 0.8;
 
     spawnhurdles();
@@ -398,6 +397,14 @@ function backgroundChanger(){
       robin.changeAnimation("running", robin_running);
       jump.play();
     }
+
+    $(window).bind("tap", function() {
+      if(robin.y >= height-180.5){
+        robin.velocityY = -10.5;
+        robin.changeAnimation("running", robin_running);
+        jump.stop();
+      }
+    });
 
     robin.velocityY = robin.velocityY + 0.8;
 
@@ -414,8 +421,15 @@ function backgroundChanger(){
       robin.velocityY = -11;
       robin.changeAnimation("running", robin_running);
       jump.play();
-
     }
+
+    $(window).bind("tap", function() {
+      if(robin.y >= height-180.5){
+        robin.velocityY = -11;
+        robin.changeAnimation("running", robin_running);
+        jump.stop();
+      }
+    });
 
     robin.velocityY = robin.velocityY + 0.8;
 
@@ -429,11 +443,18 @@ function backgroundChanger(){
 
     //velocity of Robin
     if (keyDown("space") && robin.y >= height-180.5) {
-      robin.velocityY = -12;
+      robin.velocityY = -11.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
-
     }
+
+    $(window).bind("tap", function() {
+      if(robin.y >= height-180.5){
+        robin.velocityY = -11.5;
+        robin.changeAnimation("running", robin_running);
+        jump.stop();
+      }
+    });
 
     robin.velocityY = robin.velocityY + 0.7;
 
@@ -454,10 +475,18 @@ function backgroundChanger(){
 
     //velocity of Robin
     if (keyDown("space") && robin.y >= height-180.5) {
-      robin.velocityY = -11;
+      robin.velocityY = -11.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
     }
+
+    $(window).bind("tap", function() {
+      if(robin.y >= height-180.5){
+        robin.velocityY = -11.5;
+        robin.changeAnimation("running", robin_running);
+        jump.stop();
+      }
+    });
 
     robin.velocityY = robin.velocityY + 0.8;
 
@@ -477,10 +506,18 @@ function backgroundChanger(){
 
     //velocity of Robin
     if (keyDown("space") && robin.y >= height-180.5) {
-      robin.velocityY = -11;
+      robin.velocityY = -11.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
     }
+
+    $(window).bind("tap", function() {
+      if(robin.y >= height-180.5){
+        robin.velocityY = -11.5;
+        robin.changeAnimation("running", robin_running);
+        jump.stop();
+      }
+    });
 
     robin.velocityY = robin.velocityY + 0.8;
 
@@ -693,7 +730,7 @@ function spawnObstacles() {
     return;
   } else if (frameCount % 40 === 0) {
       obstacle = createSprite(width, 0, 10, 40);
-      obstacle.velocityX = -(10 + Math.floor(score / 100));
+      obstacle.velocityX = -(8 + Math.floor(score / 100));
       // obstacle.debug=true;
 
       //generate random hurdles
@@ -793,7 +830,7 @@ function spawnGhostObs(){
     return;
   } else if(frameCount % 35 === 0){
       ghostObs = createSprite(width, 0 , 50, 50);
-      ghostObs.velocityX = -(9 + Math.floor(score / 100));
+      ghostObs.velocityX = -(8 + Math.floor(score / 110));
       // ghostObs.debug=true;
 
       //generate random number
@@ -865,7 +902,7 @@ function spawnCreatures(){
     return;
   } else if(frameCount % 30 === 0){    
       creatureObs = createSprite(width, 0 , 10, 10);
-      creatureObs.velocityX = -(7 + Math.floor(score / 100));
+      creatureObs.velocityX = -(7 + Math.floor(score / 120));
       // creatureObs.debug=true;
 
       //generate random number
