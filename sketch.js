@@ -56,7 +56,7 @@ function preload() {
   
   robin_running = loadAnimation("Sprites/Robin/robinRun/robinRun1.png", "Sprites/Robin/robinRun/robinRun2.png", "Sprites/Robin/robinRun/robinRun3.png", "Sprites/Robin/robinRun/robinRun4.png", "Sprites/Robin/robinRun/robinRun4.png", "Sprites/Robin/robinRun/robinRun5.png", "Sprites/Robin/robinRun/robinRun6.png", "Sprites/Robin/robinRun/robinRun7.png", "Sprites/Robin/robinRun/robinRun8.png", "Sprites/Robin/robinRun/robinRun9.png", "Sprites/Robin/robinRun/robinRun10.png", "Sprites/Robin/robinRun/robinRun11.png", "Sprites/Robin/robinRun/robinRun12.png");
 
-  robin_slide = loadAnimation("Sprites/Robin/robinSlide/robinSlide.png");
+  robin_slide = loadImage("Sprites/Robin/robinSlide/robinSlide.png");
 
   robin_RIP = loadImage("Sprites/Robin/robinRIP/robinRIP.png");
 
@@ -156,7 +156,7 @@ function setup() {
   robin.setCollider("rectangle",0,0,25,31);
   robin.addAnimation("idle", robinIdle);
   robin.addAnimation("running", robin_running);
-  robin.addAnimation("slide", robin_slide);
+  robin.addImage("slide", robin_slide);
   robin.addAnimation("RIP", robin_RIP);
   robin.scale = 1.3;
   robin.debug=false;
@@ -258,7 +258,7 @@ function draw() {
     }
 
       if (keyDown(83)) {
-        robin.changeAnimation("slide", robin_slide);
+        robin.changeImage("slide", robin_slide);
   //       sliding.play();
         invisibleGround.y = height-150;
         robin.y = height-150;
@@ -271,8 +271,8 @@ function draw() {
       }
     
     $(window).bind("swipe.down", function() {
-      robin.changeAnimation("slide", robin_slide);
       if(frameCount % 50 != 0){
+        robin.changeImage("slide", robin_slide);
 //         sliding.play();
         invisibleGround.y = height-150;
         robin.y = height-150;
