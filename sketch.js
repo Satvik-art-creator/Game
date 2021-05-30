@@ -822,7 +822,7 @@ function spawnhurdles() {
       hurdle.y = height - 175;
       hurdle.scale = 1.3;
     } else {
-      hurdle.y = Math.floor(random(height - 180, height - 210));
+      hurdle.y = Math.floor(random(height - 180, height - 198));
       hurdle.scale = 0.6;
       // console.log(hurdle.y);
     }
@@ -989,10 +989,10 @@ function spawnGhostObs() {
     }
 
     if (rand === 1) {
-      ghostObs.y = Math.floor(random(height - 200, height - 215));
+      ghostObs.y = Math.floor(random(height - 190, height - 200));
       ghostObs.scale = 0.4;
     } else if (rand === 3) {
-      ghostObs.y = Math.floor(random(height - 185, height - 215));
+      ghostObs.y = Math.floor(random(height - 185, height - 198));
       ghostObs.scale = 0.3;
       // ghostObs.debug = true;
       ghostObs.setCollider("rectangle", 0, 0, 170, 168);
@@ -1183,7 +1183,7 @@ function spawnALL() {
       All.y = height - 175;
       All.scale = 1.3;
     } else if (randNum === 3 || randNum === 4) {
-      All.y = Math.floor(random(height - 180, height - 210));
+      All.y = Math.floor(random(height - 180, height - 200));
       All.scale = 0.6;
       // console.log(All.y);
     } else if (randNum === 5) {
@@ -1198,12 +1198,12 @@ function spawnALL() {
       // All.debug=true;
       All.setCollider("rectangle", 0, 0, 115, 275);
     } else if (randNum === 8) {
-      All.y = Math.floor(random(height - 200, height - 215));
+      All.y = Math.floor(random(height - 190, height - 200));
       All.scale = 0.3;
       // All.debug = true;
       All.setCollider("rectangle", 0, 0, 170, 168);
     } else if (randNum === 9) {
-      All.y = Math.floor(random(height - 180, height - 215));
+      All.y = Math.floor(random(height - 180, height - 200));
       All.scale = 0.4;
     } else if (randNum === 10) {
       All.y = height - 185;
