@@ -402,7 +402,7 @@ function draw() {
     ) {
       die.play();
       die.setVolume(0.2);
-      gameState = END;
+      // gameState = END;
     }
   } else if (gameState === END) {
     GroupClouds.setVelocityXEach(0);
