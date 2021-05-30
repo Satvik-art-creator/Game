@@ -655,7 +655,7 @@ function reset() {
 
   robin.changeAnimation("running", robin_running);
 
-  score = score;
+  score = 0;
 
   sec = 0;
 }
