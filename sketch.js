@@ -271,8 +271,8 @@ function draw() {
       }
     
     $(window).bind("swipe.down", function() {
+      robin.changeAnimation("slide", robin_slide);
       if(frameCount % 50 != 0){
-        robin.changeAnimation("slide", robin_slide);
 //         sliding.play();
         invisibleGround.y = height-150;
         robin.y = height-150;
