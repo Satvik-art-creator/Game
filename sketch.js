@@ -56,7 +56,7 @@ function preload() {
   
   robin_running = loadAnimation("Sprites/Robin/robinRun/robinRun1.png", "Sprites/Robin/robinRun/robinRun2.png", "Sprites/Robin/robinRun/robinRun3.png", "Sprites/Robin/robinRun/robinRun4.png", "Sprites/Robin/robinRun/robinRun4.png", "Sprites/Robin/robinRun/robinRun5.png", "Sprites/Robin/robinRun/robinRun6.png", "Sprites/Robin/robinRun/robinRun7.png", "Sprites/Robin/robinRun/robinRun8.png", "Sprites/Robin/robinRun/robinRun9.png", "Sprites/Robin/robinRun/robinRun10.png", "Sprites/Robin/robinRun/robinRun11.png", "Sprites/Robin/robinRun/robinRun12.png");
 
-  robin_slide = loadImage("Sprites/Robin/robinSlide/robinSlide.png");
+  robin_slide = loadAnimation("Sprites/Robin/robinSlide/robinSlide.png");
 
   robin_RIP = loadImage("Sprites/Robin/robinRIP/robinRIP.png");
 
@@ -156,7 +156,7 @@ function setup() {
   robin.setCollider("rectangle",0,0,25,31);
   robin.addAnimation("idle", robinIdle);
   robin.addAnimation("running", robin_running);
-  robin.addImage("slide", robin_slide);
+  robin.addAnimation("slide", robin_slide);
   robin.addAnimation("RIP", robin_RIP);
   robin.scale = 1.3;
   robin.debug=false;
@@ -257,20 +257,22 @@ function draw() {
       ground.x = ground.width / 2;
     }
 
-    if (keyWentDown("s") && frameCount % 50 != 0) {
-      robin.changeImage("slide", robin_slide);
-//       sliding.play();
-      invisibleGround.y = height-150;
-      robin.y = height-150;
-      robin.velocityY=0;
-    } else if (keyWentUp("s") || frameCount % 55 === 0) {
-      // console.log(increm);
-      robin.changeAnimation("running", robin_running);
-    }
+      if (keyDown(83)) {
+        robin.changeAnimation("slide", robin_slide);
+  //       sliding.play();
+        invisibleGround.y = height-150;
+        robin.y = height-150;
+        robin.velocityY=0;
+
+        jump.stop();
+      } else{
+        // console.log(increm);
+        robin.changeAnimation("running", robin_running);
+      }
     
     $(window).bind("swipe.down", function() {
       if(frameCount % 50 != 0){
-        robin.changeImage("slide", robin_slide);
+        robin.changeAnimation("slide", robin_slide);
 //         sliding.play();
         invisibleGround.y = height-150;
         robin.y = height-150;
@@ -296,7 +298,7 @@ function draw() {
     if (GroupHurdles.isTouching(robin) || GroupObstacles.isTouching(robin) || GroupGhostObs.isTouching(robin) || GroupCreatures.isTouching(robin) || ALLGroups.isTouching(robin)) {
       die.play();
       die.setVolume(0.2);
-//       gameState = END;
+      gameState = END;
     }
 
   } else if (gameState === END) {
@@ -371,7 +373,10 @@ function backgroundChanger(){
 
     if(gameState === PLAY){
       robin.changeAnimation("running", robin_running);
-    } else if (keyDown("space") && robin.y >= height-180.5) {
+    } 
+    
+    //?velocity of Robin
+    if (keyDown("space") && robin.y >= height-180.5) {
       robin.velocityY = -10.5;
       robin.changeAnimation("running", robin_running);
       jump.play();
@@ -548,7 +553,7 @@ function reset() {
 
   robin.changeAnimation("running", robin_running);
 
-  score = 0;
+  score = score;
 
   sec = 0;
 }
