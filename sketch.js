@@ -223,8 +223,9 @@ function draw() {
     textSize(25);
     fill("blue");
     textStyle(BOLDITALIC);
-    text("Press SPACE KEY OR Tap to Jump & Press 'S' Key or Swipe Down to Slide", 60, 220);
-    text("Press SPACE KEY OR Tap anywhere on the screen to Start", 60, 270);
+    text("Press SPACE KEY OR Tap to Jump", 60, 220);
+    text("Press 'S' Key or Swipe Down to Slide", 60, 270);
+    text("Press SPACE KEY OR Tap anywhere on the screen to Start", 60, 320);
 
     ground.width = width;
     ground.velocityX = 0;
