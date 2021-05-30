@@ -223,8 +223,8 @@ function draw() {
     textSize(25);
     fill("blue");
     textStyle(BOLDITALIC);
-    text("Press SPACE KEY OR Tap to Jump & Press 'S' Key or Swipe Down to Slide", 60, 200);
-    text("Press SPACE KEY OR Tap anywhere on the screen to Start", 60, 250);
+    text("Press SPACE KEY OR Tap to Jump & Press 'S' Key or Swipe Down to Slide", 60, 220);
+    text("Press SPACE KEY OR Tap anywhere on the screen to Start", 60, 270);
 
     ground.width = width;
     ground.velocityX = 0;
@@ -271,6 +271,7 @@ function draw() {
       }
     
     $(window).bind("swipe.down", function() {
+      text("hello", 500, 500);
       if(frameCount % 50 != 0){
         robin.changeAnimation("slide", robin_slide);
 //         sliding.play();
