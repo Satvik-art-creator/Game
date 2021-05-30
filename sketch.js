@@ -344,10 +344,10 @@ function draw() {
   }
 
   fill("#65000A");
-  textSize(25);
+  textSize(30);
   textStyle(BOLD);
-  text("Score: " + score, width/2, 100);
-  text("High Score: " + localStorage["HighestScore"], width/2-215, 100);
+  text("Score: " + score, width/2, 150);
+  text("High Score: " + localStorage["HighestScore"], width/2-250, 150);
 
   drawSprites();
 
