@@ -376,7 +376,7 @@ function draw() {
       robin.changeAnimation("running", robin_running);
     }
 
-    $(window).bind("swipe", function () {
+    $(window).on("swipe", function () {
       robin.changeImage("slide", robin_slide);
       if (frameCount % 50 != 0) {
         //         sliding.play();
