@@ -215,14 +215,6 @@ function preload() {
     "Sprites/Monsters/Mons1Frame13.png"
   );
 
-  animateCreature3 = loadAnimation(
-    "Sprites/Monsters/Mons2Frame1.png",
-    "Sprites/Monsters/Mons2Frame2.png",
-    "Sprites/Monsters/Mons2Frame3.png",
-    "Sprites/Monsters/Mons2Frame4.png",
-    "Sprites/Monsters/Mons2Frame5.png"
-  );
-
   creatureImage1 = loadAnimation("Sprites/Robots/Robot1Idle.png");
 
   creatureImage2 = loadAnimation("Sprites/Monsters/Mons1Idle.png");
@@ -331,8 +323,7 @@ function draw() {
     fill("blue");
     textStyle(BOLDITALIC);
     text("Press SPACE KEY OR Tap to Jump", 60, 220);
-    text("Press 'S' KEY OR Swipe Down to Slide", 60, 270);
-    text("Press SPACE KEY OR TAP anywhere on the screen to Start", 60, 320);
+    text("Press SPACE KEY OR TAP anywhere on the screen to Start", 60, 270);
 
     ground.width = width;
     ground.velocityX = 0;
@@ -354,6 +345,7 @@ function draw() {
     if (keyWentDown("SPACE") || mousePressedOver()) {
       gameState = PLAY;
     }
+
   } else if (gameState === PLAY) {
     score = score + Math.round(getFrameRate() / 40);
 
@@ -1052,7 +1044,7 @@ function spawnCreatures() {
     // creatureObs.debug=true;
 
     //generate random number
-    let rand = Math.floor(random(1, 4));
+    let rand = Math.floor(random(1, 3));
     // console.log(rand);
 
     switch (rand) {
@@ -1066,10 +1058,6 @@ function spawnCreatures() {
         creatureObs.addAnimation("MonsIdle", creatureImage2);
         break;
 
-      case 3:
-        creatureObs.addAnimation("witchMons", animateCreature3);
-        break;
-
       default:
         break;
     }
@@ -1079,13 +1067,9 @@ function spawnCreatures() {
       creatureObs.scale = 0.2;
       // creatureObs.debug=true;
       creatureObs.setCollider("rectangle", 0, 0, 300, 320);
-    } else if (rand === 2) {
+    } else{
       creatureObs.y = height - 185;
       creatureObs.scale = 0.14;
-    } else {
-      creatureObs.y = height - 240;
-      creatureObs.scale = 0.17;
-      // creatureObs.debug=true;
     }
 
     creatureObs.lifetime = 180;
@@ -1137,7 +1121,7 @@ function spawnALL() {
     All.velocityX = -(7 + Math.floor(score / 150));
 
     //generate random number
-    let randNum = Math.floor(random(1, 14));
+    let randNum = Math.floor(random(1, 13));
 
     switch (randNum) {
       case 1:
@@ -1192,9 +1176,7 @@ function spawnALL() {
         All.addAnimation("MonsIdle", creatureImage2);
         break;
 
-      case 13:
-        All.addAnimation("witchMons", animateCreature3);
-        break;
+      default: break;
     }
 
     if (randNum === 1 || randNum === 2) {
@@ -1231,13 +1213,9 @@ function spawnALL() {
       All.scale = 0.2;
       // All.debug=true;
       All.setCollider("rectangle", 0, 0, 300, 320);
-    } else if (randNum === 12) {
+    } else{
       All.y = height - 185;
       All.scale = 0.14;
-    } else {
-      All.y = height - 240;
-      All.scale = 0.17;
-      // All.debug=true;
     }
 
     All.lifetime = 180;
