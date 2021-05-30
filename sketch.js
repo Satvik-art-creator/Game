@@ -323,7 +323,7 @@ function draw() {
     fill("blue");
     textStyle(BOLDITALIC);
     text("Press SPACE KEY OR Tap to Jump", 60, 220);
-    text("Press SPACE KEY OR TAP anywhere on the screen to Start", 60, 270);
+    text("Press SPACE KEY OR Tap anywhere on the screen to Start", 60, 270);
 
     ground.width = width;
     ground.velocityX = 0;
