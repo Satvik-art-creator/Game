@@ -339,6 +339,10 @@ function draw() {
       ground.x = ground.width / 2;
     }
 
+    $(window).on("swipe", function() {
+      text("Nade", 50, 50);
+    });
+
     spawnClouds();
 
     if (score > 0 && score % 100 === 0) {
