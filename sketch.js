@@ -223,8 +223,6 @@ function preload() {
 
   restartImage = loadImage("Sprites/restart.png");
 
-  // BGM = loadSound("Assets/BGM.mp3");
-
   die = loadSound("Assets/die.mp3");
 
   jump = loadSound("Assets/jump.mp3");
@@ -242,16 +240,10 @@ function preload() {
   sunny = loadSound("Assets/sunny.mp3");
 
   thunderStr = loadSound("Assets/thunder.mp3");
-
-  //   const options = { probabilityThreshold: 0.95 };
-
-  //   classifier = ml5.soundClassifier('SpeechCommands18w', options, modelReady);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  // console.log(height);
 
   robin = createSprite(100, height - 160, 20, 70);
   robin.setCollider("rectangle", 0, 0, 25, 31);
@@ -308,15 +300,8 @@ function setup() {
   ALLGroups = new Group();
 }
 
-// function modelReady() {
-//   // classify sound
-//   classifier.classify(gotCommands);
-// }
-
 function draw() {
   backgroundChanger();
-
-  // console.log(robin.y);
 
   if (gameState === SERVE) {
     textSize(25);
@@ -345,7 +330,6 @@ function draw() {
     if (keyWentDown("SPACE") || mousePressedOver()) {
       gameState = PLAY;
     }
-
   } else if (gameState === PLAY) {
     score = score + Math.round(getFrameRate() / 40);
 
@@ -355,38 +339,7 @@ function draw() {
       ground.x = ground.width / 2;
     }
 
-    if (keyDown(83)) {
-      robin.changeImage("slide", robin_slide);
-      //       sliding.play();
-      invisibleGround.y = height - 150;
-      robin.y = height - 150;
-      robin.velocityY = 0;
-
-      jump.stop();
-    } else {
-      // console.log(increm);
-      robin.changeAnimation("running", robin_running);
-    }
-
-    $(window).bind("swipe.down", function () {
-      if (frameCount % 50 != 0) {
-        robin.changeImage("slide", robin_slide);
-        //         sliding.play();
-        invisibleGround.y = height - 150;
-        robin.y = height - 150;
-        robin.velocityY = 0;
-      } else {
-        robin.changeAnimation("running", robin_running);
-      }
-    });
-
     spawnClouds();
-
-    // sec = World.seconds;
-
-    // fill("black");
-    // textSize(15);
-    // text(`Total Time you had Played : ${Math.floor(sec/60)} min ${sec - Math.floor(sec/60) * 60} sec`, 30, 50);
 
     if (score > 0 && score % 100 === 0) {
       check.play();
@@ -402,7 +355,7 @@ function draw() {
     ) {
       die.play();
       die.setVolume(0.2);
-      // gameState = END;
+      gameState = END;
     }
   } else if (gameState === END) {
     GroupClouds.setVelocityXEach(0);
@@ -454,20 +407,6 @@ function draw() {
 
   drawSprites();
 }
-
-// function gotCommands(error, results) {
-//   if (error) {
-//     console.error(error);
-//   }
-
-//   // console.log(results[0].label, results[0].confidence);
-
-//   if(score >= 0 && score < 250 && results[0].label == 'up' && robin.y >= height-180.5){
-//     robin.velocityY = -10.5;
-//     robin.changeAnimation("running", robin_running);
-//     jump.play();
-//   }
-// }
 
 function backgroundChanger() {
   if (score >= 0 && score < 1000) {
@@ -712,32 +651,6 @@ function Star() {
   }
 }
 
-// function Rain(){
-//   if(gameState === END){
-//     return;
-//   }
-
-//   else{
-//     for(var i=0; i<2; i++){
-//       drop[i] = createSprite(Math.floor(random(0,width)),0,3,3);
-//     }
-
-//     for(var i=0; i<2; i++){
-//       drop[i].addImage(dropImage);
-//       drop[i].scale=0.05;
-//       drop[i].velocityY=12;
-
-//       drop[i].lifetime = 45;
-
-//       //adjust the depth
-//       drop[i].depth = robin.depth;
-//       robin.depth = robin.depth + 1;
-
-//       GroupRain.add(drop[i]);
-//     }
-//   }
-// }
-
 function thunderBolt() {
   if (gameState === END) {
     return;
@@ -847,7 +760,7 @@ function spawnObstacles() {
     robin.depth = robin.depth + 1;
 
     return;
-  } else if (frameCount % 40 === 0) {
+  } else if (frameCount % 35 === 0) {
     obstacle = createSprite(width, 0, 10, 40);
     obstacle.velocityX = -(8 + Math.floor(score / 100));
     // obstacle.debug=true;
@@ -963,7 +876,7 @@ function spawnGhostObs() {
     return;
   } else if (frameCount % 35 === 0) {
     ghostObs = createSprite(width, 0, 50, 50);
-    ghostObs.velocityX = -(8 + Math.floor(score / 110));
+    ghostObs.velocityX = -(7 + Math.floor(score / 110));
     // ghostObs.debug=true;
 
     //generate random number
@@ -1038,9 +951,9 @@ function spawnCreatures() {
     robin.depth = robin.depth + 1;
 
     return;
-  } else if (frameCount % 30 === 0) {
+  } else if (frameCount % 34 === 0) {
     creatureObs = createSprite(width, 0, 10, 10);
-    creatureObs.velocityX = -(7 + Math.floor(score / 120));
+    creatureObs.velocityX = -(7.5 + Math.floor(score / 120));
     // creatureObs.debug=true;
 
     //generate random number
@@ -1067,7 +980,7 @@ function spawnCreatures() {
       creatureObs.scale = 0.2;
       // creatureObs.debug=true;
       creatureObs.setCollider("rectangle", 0, 0, 300, 320);
-    } else{
+    } else {
       creatureObs.y = height - 185;
       creatureObs.scale = 0.14;
     }
@@ -1118,7 +1031,7 @@ function spawnALL() {
     return;
   } else if (frameCount % 35 === 0) {
     All = createSprite(width, 0, 50, 50);
-    All.velocityX = -(7 + Math.floor(score / 150));
+    All.velocityX = -(7.5 + Math.floor(score / 150));
 
     //generate random number
     let randNum = Math.floor(random(1, 13));
@@ -1176,7 +1089,8 @@ function spawnALL() {
         All.addAnimation("MonsIdle", creatureImage2);
         break;
 
-      default: break;
+      default:
+        break;
     }
 
     if (randNum === 1 || randNum === 2) {
@@ -1213,7 +1127,7 @@ function spawnALL() {
       All.scale = 0.2;
       // All.debug=true;
       All.setCollider("rectangle", 0, 0, 300, 320);
-    } else{
+    } else {
       All.y = height - 185;
       All.scale = 0.14;
     }
